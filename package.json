@@ -3,15 +3,32 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "build": "bun --bun nuxt build",
+    "dev": "bun --bun nuxt dev",
+    "generate": "bun --bun nuxt generate",
+    "db:generate": "drizzle-kit generate:sqlite",
+    "studio": "drizzle-kit studio",
+    "preview": "bun --bun nuxt preview",
+    "postinstall": "bun --bun nuxt prepare"
   },
   "dependencies": {
+    "@planetscale/database": "^1.16.0",
+    "db0": "^0.1.4",
+    "drizzle-orm": "^0.29.5",
     "nuxt": "^3.11.0",
+    "pinia": "^2.1.7",
+    "playwright": "^1.42.1",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@pinia/nuxt": "^0.5.1",
+    "better-sqlite3": "^9.4.3",
+    "drizzle-kit": "^0.20.14",
+    "@types/bun": "latest"
+  },
+  "module": "index.ts",
+  "peerDependencies": {
+    "typescript": "^5.0.0"
   }
 }
