@@ -1,6 +1,4 @@
-import { Database } from 'bun:sqlite'
-import { migrate } from 'drizzle-orm/bun-sqlite/migrator'
-import { drizzle } from 'drizzle-orm/bun-sqlite'
+import { migrateDatabase } from '~/server/utils/migrateDatabase'
 
 export default defineTask({
   meta: {
@@ -9,15 +7,12 @@ export default defineTask({
   },
   run({ payload, context }) {
     try {
-      const db = new Database(`${process.cwd()}/.data/db.bun.sqlite`)
-      const orm = drizzle(db)
+      useDrizzle()
 
-      migrate(orm, {
-        migrationsFolder: `./drizzle`,
-      })
+      migrateDatabase()
       return { result: 'Success' }
     } catch (error) {
-      return { result: `${error}` }
+      throw error
     }
   },
 })

@@ -26,3 +26,7 @@ export default defineEventHandler(async _event => {
     consola.error(error)
   }
 })
+
+// export default defineEventHandler(() => {
+//   console.log('Wrong path dummy')
+// })

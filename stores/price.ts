@@ -1,13 +1,21 @@
 import { type TrainPrice } from '../server/schemas'
 
 export const useTrainPrice = defineStore('trainPrice', () => {
-  const trainPrice = ref<TrainPrice[]>([])
+  const trainPrice = useState<TrainPrice[]>('trainPrice', () => [])
 
-  const { status: fetchStatus, execute } = useFetch('/api/playwright', {
+  const {
+    status: fetchStatus,
+    execute,
+    error,
+  } = useFetch('/api/scrape', {
     immediate: false,
+    server: false,
+    retry: false,
+    method: 'post',
+    body: { browser: 'webkit' },
   })
 
-  const fetchEvent = () => execute()
+  const fetchEvent = async () => await execute()
 
-  return { trainPrice, fetchStatus, fetchEvent }
+  return { trainPrice, fetchStatus, fetchEvent, error }
 })

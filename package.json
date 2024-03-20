@@ -7,25 +7,34 @@
     "dev": "bun --bun nuxt dev",
     "generate": "bun --bun nuxt generate",
     "db:generate": "drizzle-kit generate:sqlite",
+    "db:migrate": "bun migrate.ts",
     "studio": "drizzle-kit studio",
     "preview": "bun --bun nuxt preview",
     "postinstall": "bun --bun nuxt prepare"
   },
   "dependencies": {
     "@planetscale/database": "^1.16.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
     "db0": "^0.1.4",
     "drizzle-orm": "^0.29.5",
+    "lucide-vue-next": "^0.359.0",
     "nuxt": "^3.11.0",
     "pinia": "^2.1.7",
     "playwright": "^1.42.1",
+    "radix-vue": "^1.5.3",
+    "tailwind-merge": "^2.2.2",
+    "tailwindcss-animate": "^1.0.7",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.11.4",
     "@pinia/nuxt": "^0.5.1",
+    "@types/bun": "latest",
     "better-sqlite3": "^9.4.3",
     "drizzle-kit": "^0.20.14",
-    "@types/bun": "latest"
+    "shadcn-nuxt": "^0.10.2"
   },
   "module": "index.ts",
   "peerDependencies": {
