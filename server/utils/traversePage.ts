@@ -18,33 +18,55 @@ export const traversePage = async (page: Page) => {
 
     await page.locator('input[name="fasdlk"]').fill('Praha')
 
+    // await page.locator('input[name="fasdlk"]').click()
+
     consola.success('Filled praga')
 
-    await page.getByLabel('Praha hl.n. station, district Praha, trains').click()
+    // await page.keyboard.press('ArrowDown')
 
-    consola.success('Clicked praga select')
+    // await page.keyboard.press('Enter')
+    // await page.getByLabel('Praha hl.n. station, district Praha, trains').click()
 
-    await page.locator('.connection-to input.select__input').fill('viden')
+    // consola.success('Clicked praga select')
+
+    await page
+      .locator('.connection-to input.select__input')
+      .fill('Vídeň; Austria')
 
     consola.success('Filled vienna')
 
-    await page.getByLabel('Vídeň municipality, Austria').click()
+    // await page.keyboard.press('ArrowDown')
 
-    consola.success('Clicked vienna select')
+    // await page.keyboard.press('Enter')
+    // await page.getByLabel('Vídeň municipality, Austria').click()
 
-    await page.getByLabel('Date', { exact: true }).click()
+    // consola.success('Clicked vienna select')
+
+    // await page.$eval('#depDate', e => {
+    //   e.setAttribute('data-month', '3')
+    //   e.setAttribute('data-day', '25')
+    // })
+
+    // const date = page.locator('#depDate')
+
+    // await date.clear()
+    // await date.pressSequentially('25/04/2024', { delay: 200 })
+
+    await page.getByLabel('Date', { exact: true }).click({ delay: 500 })
 
     consola.success('Opened date calendar')
 
-    await page.getByLabel('next', { exact: true }).click()
+    await page.getByLabel('next', { exact: true }).click({ delay: 500 })
 
     consola.success('Chosen april')
 
-    await page.getByText('25', { exact: true }).click()
+    await page.getByText('25', { exact: true }).click({ delay: 500 })
 
     consola.success('Chosen day')
 
-    await page.getByLabel('Time').fill('12:00')
+    consola.success('Filled date')
+
+    await page.getByLabel('Time', { exact: true }).fill('12:00')
 
     consola.success('Filled time')
 

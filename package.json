@@ -10,31 +10,28 @@
     "db:migrate": "bun migrate.ts",
     "studio": "drizzle-kit studio",
     "preview": "bun --bun nuxt preview",
-    "postinstall": "bun --bun nuxt prepare"
+    "postinstall": "bunx patcheer apply && bun --bun nuxt prepare",
+    "rerun": "bun delete.ts && bun db:generate && bun db:migrate"
   },
   "dependencies": {
-    "@planetscale/database": "^1.16.0",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
+    "@iconify-json/ic": "^1.1.17",
+    "@iconify/json": "^2.2.194",
+    "@nuxt/ui": "^2.14.2",
     "db0": "^0.1.4",
     "drizzle-orm": "^0.29.5",
-    "lucide-vue-next": "^0.359.0",
+    "echarts": "^5.5.0",
     "nuxt": "^3.11.0",
     "pinia": "^2.1.7",
     "playwright": "^1.42.1",
-    "radix-vue": "^1.5.3",
-    "tailwind-merge": "^2.2.2",
-    "tailwindcss-animate": "^1.0.7",
     "vue": "^3.4.21",
+    "vue-echarts": "^6.6.9",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.11.4",
     "@pinia/nuxt": "^0.5.1",
     "@types/bun": "latest",
     "better-sqlite3": "^9.4.3",
-    "drizzle-kit": "^0.20.14",
-    "shadcn-nuxt": "^0.10.2"
+    "drizzle-kit": "^0.20.14"
   },
   "module": "index.ts",
   "peerDependencies": {

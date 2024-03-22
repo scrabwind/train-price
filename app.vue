@@ -1,5 +1,14 @@
+<script setup lang="ts">
+const store = useTrainPrice()
+
+await callOnce(async () => {
+  await store.fetchData()
+})
+</script>
+
 <template>
-  <div>
+  <UContainer as="main">
+    <ThemeToggle />
     <NuxtPage />
-  </div>
+  </UContainer>
 </template>
