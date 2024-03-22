@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "bun --bun nuxt build --preset bun",
+    "build:cloudflare": "bun --bun nuxt build --preset cloudflare_pages",
     "dev": "bun --bun nuxt dev --host",
     "generate": "bun --bun nuxt generate",
     "db:generate": "bun --bun drizzle-kit generate:sqlite",
