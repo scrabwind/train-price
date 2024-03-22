@@ -35,55 +35,36 @@ export const useTrainPrice = defineStore('trainPrice', () => {
   }
 
   const getChartData = computed(() => {
-    const legends = ['Chromium', 'Firefox', 'Webkit']
-    const chromium = trainData.value
-      .filter(v => v.browser === 'chromium')
-      .map(v => v.price)
-    const firefox = trainData.value
-      .filter(v => v.browser === 'firefox')
-      .map(v => v.price)
-    const webkit = trainData.value
-      .filter(v => v.browser === 'webkit')
-      .map(v => v.price)
-
-    const chromiumTest = trainData.value
-      .filter(v => v.browser === 'chromium')
-      .map(v => [v.timestamp, v.price])
-    const firefoxTest = trainData.value
-      .filter(v => v.browser === 'firefox')
-      .map(v => [v.timestamp, v.price])
-    const webkitTest = trainData.value
-      .filter(v => v.browser === 'webkit')
-      .map(v => [v.timestamp, v.price])
-
-    const times = trainData.value.map(v => v.timestamp)
+    type BrowserNames = Capitalize<AvailableBrowsers>
 
     type ChartDataSorted = {
-      [key: string]: (number | string)[][]
+      [key in AvailableBrowsers]: (number | string)[][]
     }
 
-    const test1 = trainData.value.reduce<ChartDataSorted>((acc, obj) => {
-      const { browser, price, timestamp } = obj
-      if (!acc[browser]) {
-        acc[browser] = []
-      }
-      acc[browser].push([
-        timestamp,
-        price - ((config.public.basePrice as number) || 0),
-      ])
-      return acc
-    }, {})
+    const isDataEmpty = trainData.value.length === 0
+
+    const legends: BrowserNames[] = ['Chromium', 'Firefox', 'Webkit']
+
+    const data = trainData.value.reduce<ChartDataSorted>(
+      (acc, obj) => {
+        const { browser, price, timestamp } = obj
+        if (!acc[browser as AvailableBrowsers]) {
+          acc[browser as AvailableBrowsers] = []
+        }
+
+        acc[browser as AvailableBrowsers].push([
+          timestamp,
+          price - config.public.basePrice,
+        ])
+        return acc
+      },
+      { chromium: [], webkit: [], firefox: [] }
+    )
 
     return {
       legends,
-      chromium,
-      firefox,
-      webkit,
-      times,
-      chromiumTest,
-      firefoxTest,
-      webkitTest,
-      test1,
+      ...data,
+      isDataEmpty,
     }
   })
 

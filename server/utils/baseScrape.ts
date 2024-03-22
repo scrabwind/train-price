@@ -65,11 +65,21 @@ export const baseScrape = async (chosenBrowser: AvailableBrowsers) => {
           .first()
           .screenshot()
 
+        const timestamp = new Date()
+
+        timestamp.setSeconds(0, 0)
+
+        const formattedTimestamp = timestamp
+          .toISOString()
+          .replace('T', ' ')
+          .split('.')[0]
+
         await database.insert(trainPrice).values({
           price: price,
           browser: chosenBrowser || 'chromium',
           wholeScreenshot: wholeScreenshot.toString('base64'),
           priceScreenshot: priceScreenshot.toString('base64'),
+          timestamp: formattedTimestamp,
         })
 
         consola.success('Added to database')

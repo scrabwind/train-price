@@ -1,21 +1,20 @@
 {
-  "name": "nuxt-app",
+  "name": "anti-scam-train-price",
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "bun --bun nuxt build",
-    "dev": "bun --bun nuxt dev",
+    "build": "bun --bun nuxt build --preset bun",
+    "dev": "bun --bun nuxt dev --host",
     "generate": "bun --bun nuxt generate",
     "db:generate": "drizzle-kit generate:sqlite",
     "db:migrate": "bun migrate.ts",
     "studio": "drizzle-kit studio",
     "preview": "bun --bun nuxt preview",
     "postinstall": "bunx patcheer apply && bun --bun nuxt prepare",
-    "rerun": "bun delete.ts && bun db:generate && bun db:migrate"
+    "rerun": "bun local/delete.ts && bun db:generate && bun db:migrate"
   },
   "dependencies": {
     "@iconify-json/ic": "^1.1.17",
-    "@iconify/json": "^2.2.194",
     "@nuxt/ui": "^2.14.2",
     "db0": "^0.1.4",
     "drizzle-orm": "^0.29.5",

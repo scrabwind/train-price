@@ -1,5 +1,3 @@
-import { iconsPlugin, getIconCollections } from '@egoist/tailwindcss-icons'
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -17,11 +15,11 @@ export default defineNuxtConfig({
     },
   },
   ui: {
-    icons: ['heroicons', 'ic'],
+    icons: ['ic'],
   },
   runtimeConfig: {
     public: {
-      basePrice: 1260,
+      basePrice: 129000,
     },
   },
 })

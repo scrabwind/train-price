@@ -25,22 +25,10 @@ const columns: {
   { key: 'wholeScreenshot', label: 'Whole Screenshot' },
 ]
 
-// const handleCreate = async (_: MouseEvent) => {
-//   const res = await $fetch('/api/scrape')
-
-//   data.value = res
-// }
-
 const handleDrop = async (_: MouseEvent) => {
   await $fetch('/api/drop')
 }
 
-// const { refresh, execute } = await useFetch('/api/playwright', {
-//   method: 'POST',
-//   body: {
-//     browser: 'webkit',
-//   },
-// })
 const handleWholeScreenshotClick = (screenshot: string) => {
   const img = new Image()
   img.src = `data:image/png;base64,${screenshot}`
@@ -52,13 +40,7 @@ const handleWholeScreenshotClick = (screenshot: string) => {
 </script>
 
 <template>
-  <!-- <div :key="row?.id" v-for="row in data">
-    <span>{{ row.id }}</span>
-    <span>{{ row.price }}</span>
-    <span>{{ row.timestamp }}</span>
-    <!-- <img width="200" :src="`data:image/png;base64,${row.priceScreenshot}`" /> -->
-  <!-- </div> -->
-  <PriceChart />
+  <PriceChart v-if="!store.getChartData.isDataEmpty" />
   <UTable :rows="store?.trainData" :columns="columns">
     <template #priceScreenshot-data="{ row }">
       <img
@@ -78,15 +60,17 @@ const handleWholeScreenshotClick = (screenshot: string) => {
     </template>
   </UTable>
 
-  <UButton color="teal" @click="() => store.scrapePage('chromium')"
-    >Scrape Chromium</UButton
-  >
-  <UButton color="orange" @click="() => store.scrapePage('firefox')"
-    >Scrape Firefox</UButton
-  >
-  <UButton color="blue" @click="() => store.scrapePage('webkit')"
-    >Scrape Webkit</UButton
-  >
-  <UButton @click="() => store.scrapePage('all')">Multiple scrapes</UButton>
-  <UButton @click="handleDrop">Delete</UButton>
+  <dir class="p-8 flex justify-between">
+    <UButton color="blue" @click="() => store.scrapePage('chromium')"
+      >Scrape Chromium</UButton
+    >
+    <UButton color="orange" @click="() => store.scrapePage('firefox')"
+      >Scrape Firefox</UButton
+    >
+    <UButton color="teal" @click="() => store.scrapePage('webkit')"
+      >Scrape Webkit</UButton
+    >
+    <UButton @click="() => store.scrapePage('all')">Multiple scrapes</UButton>
+    <UButton disabled color="red" @click="handleDrop">Delete</UButton>
+  </dir>
 </template>

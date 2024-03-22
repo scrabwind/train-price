@@ -11,7 +11,7 @@ import {
 } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers'
 import type { ComposeOption } from 'echarts/core'
-import type { LineSeriesOption, BarSeriesOption } from 'echarts/charts'
+import type { BarSeriesOption } from 'echarts/charts'
 
 import type {
   TitleComponentOption,
@@ -20,7 +20,6 @@ import type {
   ToolboxComponentOption,
   GridComponentOption,
 } from 'echarts/components'
-import { color } from 'echarts'
 
 use([
   TitleComponent,
@@ -43,145 +42,10 @@ type EChartsOption = ComposeOption<
 >
 
 const theme = useColorMode()
-// const chartOptions = computed<EChartsOption>(() => {
-//   return {
-//     title: {
-//       text: 'Stacked Line',
-//     },
-//     tooltip: {
-//       trigger: 'axis',
-//     },
-//     legend: {
-//       data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine'],
-//     },
-//     grid: {
-//       left: '3%',
-//       right: '4%',
-//       bottom: '3%',
-//       containLabel: true,
-//     },
-//     toolbox: {
-//       feature: {
-//         saveAsImage: {},
-//       },
-//     },
-//     xAxis: {
-//       type: 'category',
-//       boundaryGap: true,
-//       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-//     },
-//     yAxis: {
-//       type: 'value',
-//     },
-//     series: [
-//       {
-//         name: 'Email',
-//         type: 'line',
-//         stack: 'Total',
-//         data: [120, 132, 101, 134, 90, 230, 210],
-//       },
-//       {
-//         name: 'Union Ads',
-//         type: 'line',
-//         stack: 'Total',
-//         data: [220, 182, 191, 234, 290, 330, 310],
-//       },
-//       {
-//         name: 'Video Ads',
-//         type: 'line',
-//         stack: 'Total',
-//         data: [150, 232, 201, 154, 190, 330, 410],
-//       },
-//       {
-//         name: 'Direct',
-//         type: 'line',
-//         stack: 'Total',
-//         data: [320, 332, 301, 334, 390, 330, 320],
-//       },
-//       {
-//         name: 'Search Engine',
-//         type: 'line',
-//         stack: 'Total',
-//         data: [820, 932, 901, 934, 1290, 1330, 1320],
-//       },
-//     ],
-//   }
-// })
 
 const store = useTrainPrice()
 
 const config = useRuntimeConfig()
-
-// const chartOptions = computed(() => ({
-//   title: {
-//     text: 'Price',
-//   },
-//   tooltip: {
-//     trigger: 'axis',
-//   },
-//   legend: {
-//     data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine'],
-//   },
-//   grid: {
-//     left: '3%',
-//     right: '3%',
-//     bottom: '3%',
-//     containLabel: true,
-//   },
-//   // toolbox: {
-//   //   feature: {
-//   //     saveAsImage: {},
-//   //   },
-//   // },
-//   xAxis: {
-//     type: 'time',
-//     boundaryGap: true,
-//   },
-//   yAxis: {
-//     type: 'value',
-//   },
-//   series: [
-//     {
-//       name: 'Email',
-//       type: 'line',
-//       stack: 'Total',
-//       data: [120, 132, 101, 134, 90, 230, 210],
-//     },
-//     {
-//       name: 'Union Ads',
-//       type: 'line',
-//       stack: 'Total',
-//       data: [220, 182, 191, 234, 290, 330, 310],
-//     },
-//     {
-//       name: 'Video Ads',
-//       type: 'line',
-//       stack: 'Total',
-//       data: [150, 232, 201, 154, 190, 330, 410],
-//     },
-//     {
-//       name: 'Direct',
-//       type: 'line',
-//       stack: 'Total',
-//       data: [320, 332, 301, 334, 390, 330, 320],
-//     },
-//     {
-//       name: 'Search Engine',
-//       type: 'line',
-//       stack: 'Total',
-//       data: [820, 932, 901, 934, 1290, 1330, 1320],
-//     },
-//   ],
-// }))
-
-// console.log(store.getChartData.test1.chromium)
-// console.log(store.getChartData.chromiumTest)
-
-// const chromiumTest = store.trainData
-//   .filter(v => v.browser === 'chromium')
-//   .map(v => [v.timestamp, v.price])
-
-// console.log(chromiumTest)
 
 const chartOptions = computed<EChartsOption>(() => ({
   title: {
@@ -189,24 +53,18 @@ const chartOptions = computed<EChartsOption>(() => ({
   },
   tooltip: {
     trigger: 'axis',
-    valueFormatter: v => `${(v as number) + config.public.basePrice}`,
+    valueFormatter: v => {
+      const formatedNumber = ((v as number) + config.public.basePrice) / 100
+      return `${formatedNumber} CZK = ${Math.round(formatedNumber * 0.17)} PLN`
+    },
   },
   backgroundColor: theme.value === 'dark' ? '#121212' : '#FFF',
-  // legend: {
-  //   data: ['chromium'],
-  // },
   grid: {
     left: '3%',
     right: '3%',
     bottom: '3%',
     containLabel: true,
   },
-  // toolbox: {
-  //   feature: {
-  //     saveAsImage: {},
-  //   },
-  // },
-
   xAxis: {
     type: 'time',
   },
@@ -221,26 +79,26 @@ const chartOptions = computed<EChartsOption>(() => ({
     {
       name: 'Chromium',
       type: 'bar',
-      data: store.getChartData.test1.chromium,
+      data: store.getChartData.chromium,
       itemStyle: {
-        color: '#126ee0',
+        color: '#3b82f6',
       },
     },
     {
       name: 'Firefox',
       type: 'bar',
-      data: store.getChartData.test1.firefox,
+      data: store.getChartData.firefox,
       itemStyle: {
-        color: '#ff6600',
+        color: '#f97316',
       },
     },
 
     {
       name: 'Webkit',
       type: 'bar',
-      data: store.getChartData.test1.webkit,
+      data: store.getChartData.webkit,
       itemStyle: {
-        color: '#1fc600',
+        color: '#4fcabc',
       },
     },
   ],

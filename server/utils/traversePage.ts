@@ -52,15 +52,23 @@ export const traversePage = async (page: Page) => {
     // await date.clear()
     // await date.pressSequentially('25/04/2024', { delay: 200 })
 
-    await page.getByLabel('Date', { exact: true }).click({ delay: 500 })
+    await page.getByLabel('Date', { exact: true }).click()
 
     consola.success('Opened date calendar')
 
-    await page.getByLabel('next', { exact: true }).click({ delay: 500 })
+    await page
+      .locator('.dhx_calendar__navigation')
+      .getByLabel('next', { exact: true })
+      .click()
 
     consola.success('Chosen april')
 
-    await page.getByText('25', { exact: true }).click({ delay: 500 })
+    await page.getByText('April 2024').waitFor()
+
+    await page
+      .locator('.dhx_calendar__days')
+      .getByText('25', { exact: true })
+      .click()
 
     consola.success('Chosen day')
 
