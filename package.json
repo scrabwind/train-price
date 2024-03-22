@@ -27,6 +27,7 @@
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "latest",
     "@pinia/nuxt": "^0.5.1",
     "@types/bun": "latest",
     "better-sqlite3": "^9.4.3",

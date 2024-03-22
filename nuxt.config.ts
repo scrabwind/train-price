@@ -18,6 +18,7 @@ export default defineNuxtConfig({
     icons: ['ic'],
   },
   runtimeConfig: {
+    databaseFile: '',
     public: {
       basePrice: 129000,
     },
