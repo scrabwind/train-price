@@ -11,7 +11,7 @@
     "db:migrate": "bun migrate.ts",
     "studio": "drizzle-kit studio",
     "preview": "bun --bun nuxt preview",
-    "postinstall": "bun --bun nuxt prepare",
+    "postinstall": "bun --bun nuxt prepare && bun db:generate && bun db:migrate",
     "rerun": "bun local/delete.ts && bun db:generate && bun db:migrate"
   },
   "dependencies": {
