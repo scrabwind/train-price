@@ -7,7 +7,11 @@ FROM oven/bun:${BUN_VERSION}-slim as base
 LABEL fly_launch_runtime="Nuxt"
 
 # Nuxt app lives here
+
 WORKDIR /app
+
+RUN mkdir /mnt/sqlite
+VOLUME [ "/mnt/sqlite" ]
 
 # Set production environment
 ENV NODE_ENV="production"
