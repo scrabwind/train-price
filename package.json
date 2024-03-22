@@ -17,6 +17,9 @@
   "dependencies": {
     "@iconify-json/ic": "^1.1.17",
     "@nuxt/ui": "^2.14.2",
+    "@playwright/browser-chromium": "^1.42.1",
+    "@playwright/browser-firefox": "^1.42.1",
+    "@playwright/browser-webkit": "^1.42.1",
     "db0": "^0.1.4",
     "drizzle-orm": "^0.29.5",
     "echarts": "^5.5.0",
@@ -35,6 +38,9 @@
   },
   "module": "index.ts",
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "electron": "^29.1.5",
+    "utf-8-validate": "^6.0.3",
+    "bufferutil": "^4.0.8"
   }
 }
