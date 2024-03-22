@@ -28,7 +28,7 @@ RUN bun install
 COPY --link . .
 
 # Build application
-ENV NUXT_DATABASE_URL=/var/lib/litefs
+ENV DATABASE_URL=/mnt/sqlite/db.bun.sqlite
 
 RUN bun run build
 RUN bun db:generate
@@ -41,6 +41,8 @@ RUN rm -rf node_modules && \
 
 # Final stage for app image
 FROM base
+
+RUN bunx --bun playwright install --with-deps
 
 # Copy built application
 COPY --from=build /app /app

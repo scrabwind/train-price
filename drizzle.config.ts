@@ -1,12 +1,14 @@
 import type { Config } from 'drizzle-kit'
 
-const config = useRuntimeConfig()
+if (!process.env.DATABASE_URL) {
+  throw new Error('DATABASE_URL is missing')
+}
 
 export default {
   schema: './server/schemas',
   out: 'drizzle',
   driver: 'better-sqlite',
   dbCredentials: {
-    url: config.databaseUrl as string,
+    url: process.env.DATABASE_URL || '',
   },
 } satisfies Config

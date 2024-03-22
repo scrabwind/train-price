@@ -5,8 +5,7 @@ import { migrate } from 'drizzle-orm/bun-sqlite/migrator'
 
 export const migrateDatabase = () => {
   try {
-    const config = useRuntimeConfig()
-    const db = new Database(config.databaseUrl)
+    const db = new Database(process.env.DATABASE_URL)
     const orm = drizzle(db)
 
     migrate(orm, {

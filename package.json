@@ -6,7 +6,7 @@
     "build": "bun --bun nuxt build --preset bun",
     "dev": "bun --bun nuxt dev --host",
     "generate": "bun --bun nuxt generate",
-    "db:generate": "drizzle-kit generate:sqlite",
+    "db:generate": "bun --bun drizzle-kit generate:sqlite",
     "db:migrate": "bun migrate.ts",
     "studio": "drizzle-kit studio",
     "preview": "bun --bun nuxt preview",
@@ -30,7 +30,6 @@
     "@flydotio/dockerfile": "latest",
     "@pinia/nuxt": "^0.5.1",
     "@types/bun": "latest",
-    "better-sqlite3": "^9.4.3",
     "drizzle-kit": "^0.20.14"
   },
   "module": "index.ts",
