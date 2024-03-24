@@ -10,7 +10,7 @@
     "db:migrate": "bun migrate.ts",
     "studio": "drizzle-kit studio",
     "preview": "bun --bun nuxt preview",
-    "preinstall": "PLAYWRIGHT_BROWSERS_PATH=0 npx playwright install",
+    "preinstall": "npx playwright install-deps",
     "postinstall": "bun --bun nuxt prepare",
     "rerun": "bun local/delete.ts && bun db:generate && bun db:migrate"
   },
