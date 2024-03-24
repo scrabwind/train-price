@@ -1,6 +1,5 @@
-import { nodeResolve } from '@rollup/plugin-node-resolve'
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@pinia/nuxt', '@nuxt/ui'],
@@ -11,8 +10,11 @@ export default defineNuxtConfig({
     },
     database: {
       default: {
-        connector: 'bun-sqlite',
-        options: { name: 'db' },
+        connector: 'libsql-web',
+        options: {
+          url: process.env.TURSO_CONNECTION_URL,
+          authToken: process.env.TURSO_AUTH_TOKEN,
+        },
       },
     },
   },

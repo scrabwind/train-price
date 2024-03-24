@@ -1,11 +1,13 @@
-import { consola } from 'consola'
-import { Database } from 'bun:sqlite'
-import { drizzle } from 'drizzle-orm/bun-sqlite'
-import { migrate } from 'drizzle-orm/bun-sqlite/migrator'
+import { createClient } from '@libsql/client'
+import { drizzle } from 'drizzle-orm/libsql'
+import { migrate } from 'drizzle-orm/libsql/migrator'
 
 export const migrateDatabase = () => {
   try {
-    const db = new Database(process.env.DATABASE_URL)
+    const db = createClient({
+      url: process.env.TURSO_CONNECTION_URL || '',
+      authToken: process.env.TURSO_AUTH_TOKEN!,
+    })
     const orm = drizzle(db)
 
     migrate(orm, {
