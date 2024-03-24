@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "bun --bun nuxt build --preset bun",
+    "build": "bun --bun nuxt build",
     "dev": "bun --bun nuxt dev --dotenv .env.local",
     "generate": "bun --bun nuxt generate",
     "db:generate": "drizzle-kit generate:sqlite",
