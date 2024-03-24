@@ -10,6 +10,7 @@
     "db:migrate": "bun migrate.ts",
     "studio": "drizzle-kit studio",
     "preview": "bun --bun nuxt preview",
+    "preinstall": "PLAYWRIGHT_BROWSERS_PATH=0 bunx playwright install",
     "postinstall": "bun --bun nuxt prepare",
     "rerun": "bun local/delete.ts && bun db:generate && bun db:migrate"
   },
@@ -21,7 +22,7 @@
     "@playwright/browser-firefox": "^1.42.1",
     "@playwright/browser-webkit": "^1.42.1",
     "db0": "^0.1.4",
-    "drizzle-orm": "^0.29.5",
+    "drizzle-orm": "^0.30.4",
     "echarts": "^5.5.0",
     "nuxt": "^3.11.0",
     "pinia": "^2.1.7",
