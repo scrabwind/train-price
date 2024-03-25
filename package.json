@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "bun --bun nuxt build --preset bun",
-    "dev": "bun --bun nuxt dev --dotenv .env.local",
-    "generate": "bun --bun nuxt generate",
+    "build": "nuxt build --preset bun",
+    "dev": "nuxt dev --dotenv .env.local",
+    "generate": "nuxt generate",
     "db:generate": "drizzle-kit generate:sqlite",
     "db:migrate": "bun migrate.ts",
     "studio": "drizzle-kit studio",
@@ -38,6 +38,7 @@
   },
   "module": "index.ts",
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "@libsql/isomorphic-ws": "^0.1.5"
   }
 }

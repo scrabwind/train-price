@@ -6,23 +6,22 @@ export default defineNuxtConfig({
   nitro: {
     experimental: {
       tasks: true,
-      database: true,
     },
-    database: {
-      default: {
-        connector: 'libsql-web',
-        options: {
-          url: process.env.TURSO_CONNECTION_URL,
-          authToken: process.env.TURSO_AUTH_TOKEN,
-        },
-      },
+    scheduledTasks: {
+      '*/30 * * * *': [
+        'db:scrape:chromium',
+        'db:scrape:firefox',
+        'db:scrape:webkit',
+      ],
     },
   },
   ui: {
     icons: ['ic'],
   },
+
   runtimeConfig: {
-    databaseFile: '',
+    tursoConnectionUrl: process.env.NUXT_TURSO_CONNECTION_URL,
+    tursoAuthToken: process.env.NUXT_TURSO_AUTH_TOKEN,
     public: {
       basePrice: 129000,
     },
