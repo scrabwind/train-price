@@ -5,8 +5,6 @@ ARG BUN_VERSION=1.0.30
 ARG NODE_VERSION=20.11.1
 FROM mcr.microsoft.com/playwright:v1.42.1-jammy as base
 
-LABEL fly_launch_runtime="Nuxt"
-
 # Nuxt app lives here
 WORKDIR /app
 
