@@ -1,0 +1,16 @@
+name: Fly Deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    name: Deploy app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
+        env:
+          NUXT_TURSO_CONNECTION_URL: ${{ secrets.NUXT_TURSO_CONNECTION_URL }}
+          NUXT_TURSO_AUTH_TOKEN: ${{ secrets.NUXT_TURSO_AUTH_TOKEN }}
